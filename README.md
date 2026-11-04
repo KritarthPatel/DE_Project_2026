@@ -22,12 +22,12 @@
 
 | Role | Name | Enrollment No. | GitHub Username |
 |------|------|----------------|-----------------|
-| Group Lead | | | |
-| Member 2 | | | |
-| Member 3 | | | |
-| Member 4 | | | |
+| Group Lead | Yug Shah | 2501010533 | YugShah1510 |
+| Member 2 | Kritarth Patel | 2501010680 | Kritarth_Patel |
+| Member 3 | Het Javiya | 2501010183 | hetjaviya15 |
+| Member 4 | Parth Singla | 2501010322 | parthsinglapb05 |
 
-**Team No.:** ____ · **Section:** ____ · **Repository URL:** ____
+**Team No.:** T0092 · **Section:** D · **Repository URL:** https://github.com/YugShah1510/DE_Project_2026
 
 ---
 
