@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # BookMyShow Movie & Event Ticketing Database: DBMS Project
 
 **Course:** Database Management Systems · **Year:** B.Tech 2nd year · **Team size:** 4
