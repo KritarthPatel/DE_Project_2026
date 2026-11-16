@@ -1,0 +1,72 @@
+=== R19 run 1 ===
+Sort  (cost=580678.22..580678.55 rows=130 width=24) (actual time=3162.563..3162.648 rows=207 loops=1)
+  Sort Key: ((SubPlan 1)) DESC, s.starts_at
+  Sort Method: quicksort  Memory: 36kB
+  Buffers: shared hit=453502
+  ->  Gather  (cost=1000.00..580673.66 rows=130 width=24) (actual time=23.404..3162.472 rows=207 loops=1)
+        Workers Planned: 1
+        Workers Launched: 1
+        Buffers: shared hit=453496
+        ->  Parallel Seq Scan on shows s  (cost=0.00..3055.41 rows=76 width=16) (actual time=3.795..4.748 rows=104 loops=2)
+              Filter: ((starts_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (starts_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone) AND (movie_id = 2))
+              Rows Removed by Filter: 79914
+              Buffers: shared hit=1408
+        SubPlan 1
+          ->  Aggregate  (cost=4435.41..4435.43 rows=1 width=8) (actual time=15.251..15.251 rows=1 loops=207)
+                Buffers: shared hit=452088
+                ->  Seq Scan on bookings b  (cost=0.00..4435.41 rows=2 width=2) (actual time=9.812..15.247 rows=1 loops=207)
+                      Filter: ((show_id = s.show_id) AND ((status)::text = 'CONFIRMED'::text))
+                      Rows Removed by Filter: 150093
+                      Buffers: shared hit=452088
+Planning:
+  Buffers: shared hit=182
+Planning Time: 0.513 ms
+Execution Time: 3162.697 ms
+=== R19 run 2 ===
+Sort  (cost=580678.22..580678.55 rows=130 width=24) (actual time=3099.833..3099.878 rows=207 loops=1)
+  Sort Key: ((SubPlan 1)) DESC, s.starts_at
+  Sort Method: quicksort  Memory: 36kB
+  Buffers: shared hit=453502
+  ->  Gather  (cost=1000.00..580673.66 rows=130 width=24) (actual time=23.897..3099.748 rows=207 loops=1)
+        Workers Planned: 1
+        Workers Launched: 1
+        Buffers: shared hit=453496
+        ->  Parallel Seq Scan on shows s  (cost=0.00..3055.41 rows=76 width=16) (actual time=3.987..4.956 rows=104 loops=2)
+              Filter: ((starts_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (starts_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone) AND (movie_id = 2))
+              Rows Removed by Filter: 79914
+              Buffers: shared hit=1408
+        SubPlan 1
+          ->  Aggregate  (cost=4435.41..4435.43 rows=1 width=8) (actual time=14.947..14.947 rows=1 loops=207)
+                Buffers: shared hit=452088
+                ->  Seq Scan on bookings b  (cost=0.00..4435.41 rows=2 width=2) (actual time=9.604..14.944 rows=1 loops=207)
+                      Filter: ((show_id = s.show_id) AND ((status)::text = 'CONFIRMED'::text))
+                      Rows Removed by Filter: 150093
+                      Buffers: shared hit=452088
+Planning:
+  Buffers: shared hit=177
+Planning Time: 0.616 ms
+Execution Time: 3099.930 ms
+=== R19 run 3 ===
+Sort  (cost=580678.22..580678.55 rows=130 width=24) (actual time=3092.963..3093.035 rows=207 loops=1)
+  Sort Key: ((SubPlan 1)) DESC, s.starts_at
+  Sort Method: quicksort  Memory: 36kB
+  Buffers: shared hit=453502
+  ->  Gather  (cost=1000.00..580673.66 rows=130 width=24) (actual time=22.313..3092.909 rows=207 loops=1)
+        Workers Planned: 1
+        Workers Launched: 1
+        Buffers: shared hit=453496
+        ->  Parallel Seq Scan on shows s  (cost=0.00..3055.41 rows=76 width=16) (actual time=3.738..4.698 rows=104 loops=2)
+              Filter: ((starts_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (starts_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone) AND (movie_id = 2))
+              Rows Removed by Filter: 79914
+              Buffers: shared hit=1408
+        SubPlan 1
+          ->  Aggregate  (cost=4435.41..4435.43 rows=1 width=8) (actual time=14.916..14.916 rows=1 loops=207)
+                Buffers: shared hit=452088
+                ->  Seq Scan on bookings b  (cost=0.00..4435.41 rows=2 width=2) (actual time=9.578..14.904 rows=1 loops=207)
+                      Filter: ((show_id = s.show_id) AND ((status)::text = 'CONFIRMED'::text))
+                      Rows Removed by Filter: 150093
+                      Buffers: shared hit=452088
+Planning:
+  Buffers: shared hit=182
+Planning Time: 0.510 ms
+Execution Time: 3093.085 ms

@@ -1,0 +1,51 @@
+=== W03 run 1 ===
+Update on bookings  (cost=4060.61..4068.63 rows=0 width=0) (actual time=21.016..21.016 rows=0 loops=1)
+  Buffers: shared hit=2252 dirtied=1
+  InitPlan 1 (returns $1)
+    ->  Aggregate  (cost=4060.18..4060.19 rows=1 width=4) (actual time=20.669..20.670 rows=1 loops=1)
+          Buffers: shared hit=2184
+          ->  Seq Scan on bookings bookings_1  (cost=0.00..4060.18 rows=1 width=4) (actual time=0.794..20.662 rows=10 loops=1)
+                Filter: ((status)::text = 'PENDING'::text)
+                Rows Removed by Filter: 150084
+                Buffers: shared hit=2184
+  ->  Index Scan using bookings_pkey on bookings  (cost=0.42..8.44 rows=1 width=56) (actual time=20.684..20.685 rows=1 loops=1)
+        Index Cond: (booking_id = $1)
+        Buffers: shared hit=2188
+Planning:
+  Buffers: shared hit=112
+Planning Time: 0.392 ms
+Execution Time: 21.113 ms
+=== W03 run 2 ===
+Update on bookings  (cost=4060.61..4068.63 rows=0 width=0) (actual time=19.874..19.876 rows=0 loops=1)
+  Buffers: shared hit=2255 dirtied=1
+  InitPlan 1 (returns $1)
+    ->  Aggregate  (cost=4060.18..4060.19 rows=1 width=4) (actual time=19.278..19.280 rows=1 loops=1)
+          Buffers: shared hit=2184
+          ->  Seq Scan on bookings bookings_1  (cost=0.00..4060.18 rows=1 width=4) (actual time=0.673..19.270 rows=10 loops=1)
+                Filter: ((status)::text = 'PENDING'::text)
+                Rows Removed by Filter: 150084
+                Buffers: shared hit=2184
+  ->  Index Scan using bookings_pkey on bookings  (cost=0.42..8.44 rows=1 width=56) (actual time=19.302..19.303 rows=1 loops=1)
+        Index Cond: (booking_id = $1)
+        Buffers: shared hit=2190
+Planning:
+  Buffers: shared hit=112
+Planning Time: 0.377 ms
+Execution Time: 19.958 ms
+=== W03 run 3 ===
+Update on bookings  (cost=4060.61..4068.63 rows=0 width=0) (actual time=20.397..20.397 rows=0 loops=1)
+  Buffers: shared hit=2255 dirtied=1
+  InitPlan 1 (returns $1)
+    ->  Aggregate  (cost=4060.18..4060.19 rows=1 width=4) (actual time=20.037..20.037 rows=1 loops=1)
+          Buffers: shared hit=2184
+          ->  Seq Scan on bookings bookings_1  (cost=0.00..4060.18 rows=1 width=4) (actual time=0.698..20.024 rows=10 loops=1)
+                Filter: ((status)::text = 'PENDING'::text)
+                Rows Removed by Filter: 150084
+                Buffers: shared hit=2184
+  ->  Index Scan using bookings_pkey on bookings  (cost=0.42..8.44 rows=1 width=56) (actual time=20.061..20.062 rows=1 loops=1)
+        Index Cond: (booking_id = $1)
+        Buffers: shared hit=2190
+Planning:
+  Buffers: shared hit=112
+Planning Time: 0.932 ms
+Execution Time: 20.576 ms
