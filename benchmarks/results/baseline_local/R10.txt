@@ -1,0 +1,84 @@
+=== R10 run 1 ===
+Gather Merge  (cost=289422.95..494210.44 rows=1796845 width=44) (actual time=240.390..241.252 rows=209.00 loops=1)
+  Workers Planned: 1
+  Workers Launched: 1
+  Buffers: shared hit=2834
+  ->  Sort  (cost=288422.94..291065.36 rows=1056968 width=44) (actual time=239.538..239.541 rows=104.50 loops=2)
+        Sort Key: ((s2.starts_at - s1.ends_at)), s1.screen_id
+        Sort Method: quicksort  Memory: 30kB
+        Buffers: shared hit=2834
+        Worker 0:  Sort Method: quicksort  Memory: 32kB
+        ->  Parallel Hash Join  (cost=3526.10..117635.37 rows=1056968 width=44) (actual time=11.071..239.509 rows=104.50 loops=2)
+              Hash Cond: (s1.screen_id = s2.screen_id)
+              Join Filter: ((s2.starts_at > s1.starts_at) AND ((s2.starts_at - s1.ends_at) < '00:30:00'::interval))
+              Rows Removed by Join Filter: 8159866
+              Buffers: shared hit=2816
+              ->  Parallel Seq Scan on shows s1  (cost=0.00..2820.06 rows=28589 width=24) (actual time=1.071..3.545 rows=24495.00 loops=2)
+                    Filter: ((starts_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (starts_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Rows Removed by Filter: 55522
+                    Buffers: shared hit=1408
+              ->  Parallel Hash  (cost=2349.38..2349.38 rows=94138 width=16) (actual time=6.555..6.555 rows=80017.00 loops=2)
+                    Buckets: 262144  Batches: 1  Memory Usage: 10848kB
+                    Buffers: shared hit=1408
+                    ->  Parallel Seq Scan on shows s2  (cost=0.00..2349.38 rows=94138 width=16) (actual time=0.004..3.092 rows=80017.00 loops=2)
+                          Buffers: shared hit=1408
+Planning:
+  Buffers: shared hit=232
+Planning Time: 0.266 ms
+Execution Time: 241.552 ms
+=== R10 run 2 ===
+Gather Merge  (cost=289422.95..494210.44 rows=1796845 width=44) (actual time=245.578..246.462 rows=209.00 loops=1)
+  Workers Planned: 1
+  Workers Launched: 1
+  Buffers: shared hit=2834
+  ->  Sort  (cost=288422.94..291065.36 rows=1056968 width=44) (actual time=244.723..244.726 rows=104.50 loops=2)
+        Sort Key: ((s2.starts_at - s1.ends_at)), s1.screen_id
+        Sort Method: quicksort  Memory: 31kB
+        Buffers: shared hit=2834
+        Worker 0:  Sort Method: quicksort  Memory: 31kB
+        ->  Parallel Hash Join  (cost=3526.10..117635.37 rows=1056968 width=44) (actual time=11.364..244.694 rows=104.50 loops=2)
+              Hash Cond: (s1.screen_id = s2.screen_id)
+              Join Filter: ((s2.starts_at > s1.starts_at) AND ((s2.starts_at - s1.ends_at) < '00:30:00'::interval))
+              Rows Removed by Join Filter: 8159866
+              Buffers: shared hit=2816
+              ->  Parallel Seq Scan on shows s1  (cost=0.00..2820.06 rows=28589 width=24) (actual time=1.062..3.639 rows=24495.00 loops=2)
+                    Filter: ((starts_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (starts_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Rows Removed by Filter: 55522
+                    Buffers: shared hit=1408
+              ->  Parallel Hash  (cost=2349.38..2349.38 rows=94138 width=16) (actual time=6.557..6.557 rows=80017.00 loops=2)
+                    Buckets: 262144  Batches: 1  Memory Usage: 10848kB
+                    Buffers: shared hit=1408
+                    ->  Parallel Seq Scan on shows s2  (cost=0.00..2349.38 rows=94138 width=16) (actual time=0.004..3.033 rows=80017.00 loops=2)
+                          Buffers: shared hit=1408
+Planning:
+  Buffers: shared hit=232
+Planning Time: 0.301 ms
+Execution Time: 246.506 ms
+=== R10 run 3 ===
+Gather Merge  (cost=289422.95..494210.44 rows=1796845 width=44) (actual time=240.159..240.910 rows=209.00 loops=1)
+  Workers Planned: 1
+  Workers Launched: 1
+  Buffers: shared hit=2834
+  ->  Sort  (cost=288422.94..291065.36 rows=1056968 width=44) (actual time=239.361..239.365 rows=104.50 loops=2)
+        Sort Key: ((s2.starts_at - s1.ends_at)), s1.screen_id
+        Sort Method: quicksort  Memory: 31kB
+        Buffers: shared hit=2834
+        Worker 0:  Sort Method: quicksort  Memory: 32kB
+        ->  Parallel Hash Join  (cost=3526.10..117635.37 rows=1056968 width=44) (actual time=11.120..239.337 rows=104.50 loops=2)
+              Hash Cond: (s1.screen_id = s2.screen_id)
+              Join Filter: ((s2.starts_at > s1.starts_at) AND ((s2.starts_at - s1.ends_at) < '00:30:00'::interval))
+              Rows Removed by Join Filter: 8159866
+              Buffers: shared hit=2816
+              ->  Parallel Seq Scan on shows s1  (cost=0.00..2820.06 rows=28589 width=24) (actual time=1.082..3.390 rows=24495.00 loops=2)
+                    Filter: ((starts_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (starts_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Rows Removed by Filter: 55522
+                    Buffers: shared hit=1408
+              ->  Parallel Hash  (cost=2349.38..2349.38 rows=94138 width=16) (actual time=6.463..6.463 rows=80017.00 loops=2)
+                    Buckets: 262144  Batches: 1  Memory Usage: 10848kB
+                    Buffers: shared hit=1408
+                    ->  Parallel Seq Scan on shows s2  (cost=0.00..2349.38 rows=94138 width=16) (actual time=0.004..3.032 rows=80017.00 loops=2)
+                          Buffers: shared hit=1408
+Planning:
+  Buffers: shared hit=232
+Planning Time: 0.264 ms
+Execution Time: 240.949 ms

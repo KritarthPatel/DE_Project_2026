@@ -1,0 +1,75 @@
+=== R20 run 1 ===
+WindowAgg  (cost=5188.51..5287.37 rows=663 width=68) (actual time=10.326..14.617 rows=30.00 loops=1)
+  Window: w1 AS (ORDER BY ((bookings.booked_at)::date))
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=2223
+  ->  GroupAggregate  (cost=5188.36..5277.42 rows=663 width=36) (actual time=10.162..14.598 rows=30.00 loops=1)
+        Group Key: ((bookings.booked_at)::date)
+        Buffers: shared hit=2223
+        ->  Gather Merge  (cost=5188.36..5264.15 rows=665 width=10) (actual time=9.997..12.736 rows=48926.00 loops=1)
+              Workers Planned: 1
+              Workers Launched: 1
+              Buffers: shared hit=2223
+              ->  Sort  (cost=4188.35..4189.33 rows=391 width=10) (actual time=9.188..9.716 rows=24463.00 loops=2)
+                    Sort Key: ((bookings.booked_at)::date)
+                    Sort Method: quicksort  Memory: 1593kB
+                    Buffers: shared hit=2223
+                    Worker 0:  Sort Method: quicksort  Memory: 1473kB
+                    ->  Parallel Seq Scan on bookings  (cost=0.00..4171.52 rows=391 width=10) (actual time=0.007..8.048 rows=24463.00 loops=2)
+                          Filter: (((status)::text = 'CONFIRMED'::text) AND ((booked_at)::date >= '2026-06-01'::date) AND ((booked_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 50584
+                          Buffers: shared hit=2184
+Planning:
+  Buffers: shared hit=164
+Planning Time: 0.236 ms
+Execution Time: 14.652 ms
+=== R20 run 2 ===
+WindowAgg  (cost=5188.51..5287.37 rows=663 width=68) (actual time=10.001..14.636 rows=30.00 loops=1)
+  Window: w1 AS (ORDER BY ((bookings.booked_at)::date))
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=2223
+  ->  GroupAggregate  (cost=5188.36..5277.42 rows=663 width=36) (actual time=9.836..14.618 rows=30.00 loops=1)
+        Group Key: ((bookings.booked_at)::date)
+        Buffers: shared hit=2223
+        ->  Gather Merge  (cost=5188.36..5264.15 rows=665 width=10) (actual time=9.673..12.600 rows=48926.00 loops=1)
+              Workers Planned: 1
+              Workers Launched: 1
+              Buffers: shared hit=2223
+              ->  Sort  (cost=4188.35..4189.33 rows=391 width=10) (actual time=8.879..9.423 rows=24463.00 loops=2)
+                    Sort Key: ((bookings.booked_at)::date)
+                    Sort Method: quicksort  Memory: 1602kB
+                    Buffers: shared hit=2223
+                    Worker 0:  Sort Method: quicksort  Memory: 1464kB
+                    ->  Parallel Seq Scan on bookings  (cost=0.00..4171.52 rows=391 width=10) (actual time=0.006..7.768 rows=24463.00 loops=2)
+                          Filter: (((status)::text = 'CONFIRMED'::text) AND ((booked_at)::date >= '2026-06-01'::date) AND ((booked_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 50584
+                          Buffers: shared hit=2184
+Planning:
+  Buffers: shared hit=164
+Planning Time: 0.201 ms
+Execution Time: 14.669 ms
+=== R20 run 3 ===
+WindowAgg  (cost=5188.51..5287.37 rows=663 width=68) (actual time=10.020..14.485 rows=30.00 loops=1)
+  Window: w1 AS (ORDER BY ((bookings.booked_at)::date))
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=2223
+  ->  GroupAggregate  (cost=5188.36..5277.42 rows=663 width=36) (actual time=9.858..14.467 rows=30.00 loops=1)
+        Group Key: ((bookings.booked_at)::date)
+        Buffers: shared hit=2223
+        ->  Gather Merge  (cost=5188.36..5264.15 rows=665 width=10) (actual time=9.700..12.622 rows=48926.00 loops=1)
+              Workers Planned: 1
+              Workers Launched: 1
+              Buffers: shared hit=2223
+              ->  Sort  (cost=4188.35..4189.33 rows=391 width=10) (actual time=8.869..9.415 rows=24463.00 loops=2)
+                    Sort Key: ((bookings.booked_at)::date)
+                    Sort Method: quicksort  Memory: 1605kB
+                    Buffers: shared hit=2223
+                    Worker 0:  Sort Method: quicksort  Memory: 1461kB
+                    ->  Parallel Seq Scan on bookings  (cost=0.00..4171.52 rows=391 width=10) (actual time=0.006..7.781 rows=24463.00 loops=2)
+                          Filter: (((status)::text = 'CONFIRMED'::text) AND ((booked_at)::date >= '2026-06-01'::date) AND ((booked_at)::date <= '2026-06-30'::date))
+                          Rows Removed by Filter: 50584
+                          Buffers: shared hit=2184
+Planning:
+  Buffers: shared hit=164
+Planning Time: 0.202 ms
+Execution Time: 14.517 ms

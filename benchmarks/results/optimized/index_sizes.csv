@@ -1,0 +1,14 @@
+indexrelname,table_name,index_bytes,table_bytes
+booking_seats_booking_idx,booking_seats,4915200,16121856
+booking_seats_seat_show_idx,booking_seats,6766592,16121856
+bookings_confirmed_customer_idx,bookings,1875968,17891328
+bookings_confirmed_show_idx,bookings,4243456,17891328
+bookings_confirmed_time_idx,bookings,4251648,17891328
+bookings_newest_idx,bookings,10149888,17891328
+bookings_offer_idx,bookings,180224,17891328
+bookings_pending_id_idx,bookings,16384,17891328
+bookings_pending_time_idx,bookings,16384,17891328
+seats_screen_id_idx,seats,2121728,4915200
+shows_movie_start_idx,shows,6529024,11534336
+shows_screen_start_idx,shows,7962624,11534336
+shows_start_idx,shows,6561792,11534336
