@@ -1,0 +1,84 @@
+=== R19 run 1 ===
+Sort  (cost=571.90..572.22 rows=129 width=24) (actual time=0.297..0.301 rows=207.00 loops=1)
+  Sort Key: (COALESCE(sum(b.num_tickets), '0'::bigint)) DESC, s.starts_at
+  Sort Method: quicksort  Memory: 34kB
+  Buffers: shared hit=636
+  ->  GroupAggregate  (cost=565.12..567.38 rows=129 width=24) (actual time=0.241..0.270 rows=207.00 loops=1)
+        Group Key: s.show_id
+        Buffers: shared hit=630
+        ->  Sort  (cost=565.12..565.44 rows=129 width=18) (actual time=0.239..0.244 rows=281.00 loops=1)
+              Sort Key: s.show_id
+              Sort Method: quicksort  Memory: 35kB
+              Buffers: shared hit=630
+              ->  Nested Loop Left Join  (cost=0.84..560.60 rows=129 width=18) (actual time=0.030..0.219 rows=281.00 loops=1)
+                    Buffers: shared hit=627
+                    ->  Index Only Scan using shows_movie_start_idx on shows s  (cost=0.42..27.32 rows=129 width=16) (actual time=0.008..0.015 rows=207.00 loops=1)
+                          Index Cond: ((movie_id = 2) AND (starts_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (starts_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=5
+                    ->  Index Only Scan using bookings_confirmed_show_idx on bookings b  (cost=0.42..4.11 rows=2 width=6) (actual time=0.001..0.001 rows=0.95 loops=207)
+                          Index Cond: (show_id = s.show_id)
+                          Heap Fetches: 0
+                          Index Searches: 207
+                          Buffers: shared hit=622
+Planning:
+  Buffers: shared hit=461
+Planning Time: 0.750 ms
+Execution Time: 0.325 ms
+=== R19 run 2 ===
+Sort  (cost=571.90..572.22 rows=129 width=24) (actual time=0.297..0.301 rows=207.00 loops=1)
+  Sort Key: (COALESCE(sum(b.num_tickets), '0'::bigint)) DESC, s.starts_at
+  Sort Method: quicksort  Memory: 34kB
+  Buffers: shared hit=636
+  ->  GroupAggregate  (cost=565.12..567.38 rows=129 width=24) (actual time=0.242..0.271 rows=207.00 loops=1)
+        Group Key: s.show_id
+        Buffers: shared hit=630
+        ->  Sort  (cost=565.12..565.44 rows=129 width=18) (actual time=0.240..0.245 rows=281.00 loops=1)
+              Sort Key: s.show_id
+              Sort Method: quicksort  Memory: 35kB
+              Buffers: shared hit=630
+              ->  Nested Loop Left Join  (cost=0.84..560.60 rows=129 width=18) (actual time=0.029..0.219 rows=281.00 loops=1)
+                    Buffers: shared hit=627
+                    ->  Index Only Scan using shows_movie_start_idx on shows s  (cost=0.42..27.32 rows=129 width=16) (actual time=0.008..0.015 rows=207.00 loops=1)
+                          Index Cond: ((movie_id = 2) AND (starts_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (starts_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=5
+                    ->  Index Only Scan using bookings_confirmed_show_idx on bookings b  (cost=0.42..4.11 rows=2 width=6) (actual time=0.001..0.001 rows=0.95 loops=207)
+                          Index Cond: (show_id = s.show_id)
+                          Heap Fetches: 0
+                          Index Searches: 207
+                          Buffers: shared hit=622
+Planning:
+  Buffers: shared hit=461
+Planning Time: 0.636 ms
+Execution Time: 0.324 ms
+=== R19 run 3 ===
+Sort  (cost=571.90..572.22 rows=129 width=24) (actual time=0.329..0.332 rows=207.00 loops=1)
+  Sort Key: (COALESCE(sum(b.num_tickets), '0'::bigint)) DESC, s.starts_at
+  Sort Method: quicksort  Memory: 34kB
+  Buffers: shared hit=636
+  ->  GroupAggregate  (cost=565.12..567.38 rows=129 width=24) (actual time=0.274..0.303 rows=207.00 loops=1)
+        Group Key: s.show_id
+        Buffers: shared hit=630
+        ->  Sort  (cost=565.12..565.44 rows=129 width=18) (actual time=0.271..0.277 rows=281.00 loops=1)
+              Sort Key: s.show_id
+              Sort Method: quicksort  Memory: 35kB
+              Buffers: shared hit=630
+              ->  Nested Loop Left Join  (cost=0.84..560.60 rows=129 width=18) (actual time=0.040..0.248 rows=281.00 loops=1)
+                    Buffers: shared hit=627
+                    ->  Index Only Scan using shows_movie_start_idx on shows s  (cost=0.42..27.32 rows=129 width=16) (actual time=0.010..0.018 rows=207.00 loops=1)
+                          Index Cond: ((movie_id = 2) AND (starts_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (starts_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                          Heap Fetches: 0
+                          Index Searches: 1
+                          Buffers: shared hit=5
+                    ->  Index Only Scan using bookings_confirmed_show_idx on bookings b  (cost=0.42..4.11 rows=2 width=6) (actual time=0.001..0.001 rows=0.95 loops=207)
+                          Index Cond: (show_id = s.show_id)
+                          Heap Fetches: 0
+                          Index Searches: 207
+                          Buffers: shared hit=622
+Planning:
+  Buffers: shared hit=461
+Planning Time: 0.618 ms
+Execution Time: 0.357 ms
